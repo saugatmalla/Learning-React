@@ -33,7 +33,7 @@
             handleSubmit = (e) => {
                 e.preventDefault()
                 this.setState({
-                    area: 2 * (this.state.length + this.state.breadth)
+                    area: this.state.length * this.state.breadth
                 })
             }
 
