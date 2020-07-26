@@ -1,2 +1,2 @@
 # Learning-React
-Hello everyone, this repo is going to have the things I am learning for React. I alread have expirence with Vuejs.
+Hello everyone, this repo is going to have the things I am learning for React. I alread have experience with Vuejs.
