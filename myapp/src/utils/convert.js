@@ -22,6 +22,14 @@ export default function convert(fromUnit, toUnit, fromValue) {
         result = fromValue * 1000
     } else if (fromUnit === 'm' && toUnit === 'km') {
         result = fromValue / 1000
+    } else if (fromUnit === 'km' && toUnit === 'miles') {
+        result = fromValue * 0.62137119
+    } else if (fromUnit === 'miles' && toUnit === 'km') {
+        result = fromValue / 0.62137119
+    } else if (fromUnit === 'm' && toUnit === 'miles') {
+        result = fromValue * 0.00062137119
+    } else if (fromUnit === 'miles' && toUnit === 'm') {
+        result = fromValue / 0.00062137119
     }
 
     if (result % 1 !== 0) {

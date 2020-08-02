@@ -5,7 +5,7 @@ class Area extends React.Component {
     state = {
         measurements: [
             { id: 1, type: 'Weight', value: ['kg', 'gm', 'lbs'] },
-            { id: 2, type: 'Length', value: ['km', 'm'] },
+            { id: 2, type: 'Length', value: ['km', 'm', 'miles'] },
         ],
         selectedMeasurement: 'Weight',
         fromMeasurement: {
