@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0a689018299fb5e36d3021276e9fef95",
+    "revision": "b4c8858603946b6327e5d6303e9878fc",
     "url": "/Learning-React/index.html"
   },
   {
