@@ -31,6 +31,10 @@ export default function convert(fromUnit, toUnit, fromValue) {
     } else if (fromUnit === 'miles' && toUnit === 'm') {
         result = fromValue / 0.00062137119
     }
+    //same value 
+    else if (fromUnit === toUnit) {
+        result = fromValue
+    }
 
     if (result % 1 !== 0) {
         result = result.toFixed(3)

@@ -13,7 +13,7 @@ class Area extends React.Component {
             value: ''
         },
         toMeasurement: {
-            unit: 'gm',
+            unit: 'lbs',
             value: ''
         },
         result: 0
@@ -40,15 +40,24 @@ class Area extends React.Component {
     }
 
     handleFromUnitChange = (e) => {
-        let measurement = { ...this.state.fromMeasurement }
-        measurement.unit = e.target.value
-        this.setState({ fromMeasurement: measurement })
+        let fromMeasurement = { ...this.state.fromMeasurement }
+        let toMeasurement = { ...this.state.toMeasurement }
+
+        fromMeasurement.unit = e.target.value
+        const result = convert(e.target.value, this.state.toMeasurement.unit, this.state.fromMeasurement.value)
+        toMeasurement.value = result
+
+        this.setState({ fromMeasurement: fromMeasurement, result: result })
     }
 
     handleToUnitChange = (e) => {
-        let measurement = { ...this.state.toMeasurement }
-        measurement.unit = e.target.value
-        this.setState({ toMeasurement: measurement })
+        let toMeasurement = { ...this.state.toMeasurement }
+
+        toMeasurement.unit = e.target.value
+        const result = convert(this.state.fromMeasurement.unit, e.target.value, this.state.fromMeasurement.value)
+        toMeasurement.value = result
+
+        this.setState({ toMeasurement: toMeasurement, result: result })
     }
 
     handleFromValueChange = (e) => {
@@ -63,8 +72,12 @@ class Area extends React.Component {
         this.setState({ toMeasurement: measurement })
     }
 
-    handleCalculate = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault()
+        this.handleCalculate()
+    }
+
+    handleCalculate = () => {
         const fromUnit = this.state.fromMeasurement.unit
         const toUnit = this.state.toMeasurement.unit
 
@@ -74,6 +87,7 @@ class Area extends React.Component {
 
         const result = convert(fromUnit, toUnit, fromValue)
         toMeasurement.value = result
+        console.log(toMeasurement)
         this.setState({ result: result, toMeasurement: toMeasurement })
     }
 
@@ -98,7 +112,7 @@ class Area extends React.Component {
 
         return (
             <div className="app-content" >
-                <form onSubmit={this.handleCalculate}>
+                <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
                         <div className="col-md-4">
                             <label htmlFor="typeofMeasurement"> Select measurement</label>
@@ -113,7 +127,7 @@ class Area extends React.Component {
 
                     <div className="form-group row mt-4">
                         <div className="col-md-2">
-                            <input className="form-control" type="number" placeholder="From"
+                            <input className="form-control" type="number" placeholder="0"
                                 onChange={this.handleFromValueChange} value={this.state.fromMeasurement.value}></input>
                         </div>
 
@@ -127,7 +141,7 @@ class Area extends React.Component {
 
                     <div className="form-group row">
                         <div className="col-md-2">
-                            <input className="form-control" type="number" placeholder="To"
+                            <input className="form-control" type="number" placeholder="0"
                                 readOnly value={this.state.toMeasurement.value}></input>
                         </div>
 
@@ -139,7 +153,7 @@ class Area extends React.Component {
                     </div>
 
                     <div>
-                        <button type="submit" className="btn btn-success" onClick={this.handleCalculate}>Calculate</button>
+                        <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>Calculate</button>
                     </div>
                 </form>
 

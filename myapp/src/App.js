@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <div className="container mb-5">
-        <div className="text-center">
+        <div className="mb-5">
           <h1 className="display-1">Convert</h1>
         </div>
         <header></header>
